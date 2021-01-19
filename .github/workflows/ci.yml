@@ -25,7 +25,7 @@ jobs:
 
       - name: Define variables
         run: |
-          echo "{PROJECT}={actions-public-docker}" >> $GITHUB_ENV
+          echo "{PROJECT}={main-test}" >> $GITHUB_ENV
           echo "{VERSION}={git describe --tags}" >> $GITHUB_ENV
           echo "{COMMIT}={git rev-parse HEAD}" >> $GITHUB_ENV
           echo "{BUILDTIME}={date +%FT%T%z}" >> $GITHUB_ENV
@@ -37,7 +37,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: docker build
-        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${DOCKER_USERNAME}/${PROJECT}:${IMAGE_TAG} .
+        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${PROJECT}:${IMAGE_TAG} .
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           TOKEN: ${{ secrets.TOKEN }}
