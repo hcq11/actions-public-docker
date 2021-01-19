@@ -38,7 +38,7 @@ jobs:
 
       - name: docker build
         #run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${PROJECT}:${IMAGE_TAG} .
-        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t hcq11/main-test:latest .
+        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${{ secrets.DOCKER_USERNAME }}/main-test:latest .
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           TOKEN: ${{ secrets.TOKEN }}
@@ -46,6 +46,6 @@ jobs:
       - name: Push to docker hub
         uses: actions-hub/docker@master
         with:
-          args: push hcq11/main-test:latest
+          args: push ${{ secrets.DOCKER_USERNAME }}/main-test:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
