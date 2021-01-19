@@ -46,6 +46,6 @@ jobs:
       - name: Push to docker hub
         uses: actions-hub/docker@master
         with:
-          args: push ${DOCKER_USERNAME}/${PROJECT}:${IMAGE_TAG}
+          args: push main-test:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
