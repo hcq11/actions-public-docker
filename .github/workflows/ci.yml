@@ -37,7 +37,8 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: docker build
-        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${PROJECT}:${IMAGE_TAG} .
+        #run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${PROJECT}:${IMAGE_TAG} .
+        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t main-test:latest .
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           TOKEN: ${{ secrets.TOKEN }}
